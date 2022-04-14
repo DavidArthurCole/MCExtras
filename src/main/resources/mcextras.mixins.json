@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.davidarthurcole.mcextras.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+  ],
+  "client": [
+    "ExtrasMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

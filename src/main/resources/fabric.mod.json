@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "mcextras",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "MC Extras",
+  "description": "Extras for Minecraft",
   "authors": [
-    "Me!"
+    "DavidArthurCole"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -19,11 +19,11 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "net.davidarthurcole.mcextras.MCExtras"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "mcextras.mixins.json"
   ],
 
   "depends": {
