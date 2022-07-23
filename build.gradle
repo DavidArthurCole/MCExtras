@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.11-SNAPSHOT'
+	id 'fabric-loom' version '0.12-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -17,12 +17,13 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 	mavenCentral()
-	maven { url "https://github.com/ricksouth/serilum-forge-maven/raw/maven/" }
+	maven {
+		url = uri("https://storage.googleapis.com/devan-maven/")
+	}
 }
 
 dependencies {
-	implementation 'org.jetbrains:annotations:23.0.0'
-	implementation 'org.realityforge.org.jetbrains.annotations:org.jetbrains.annotations:1.7.0'
+	implementation 'junit:junit:4.13.2'
 
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -31,8 +32,13 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modImplementation "com.natamus.collective:collective-fabric:1.18.x-4.26"
-	api("org.json:json:20180813")
+
+	//Junit
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+
+	//Resource building during runtime
+	modImplementation("net.devtech:arrp:0.5.4")
 }
 
 processResources {
@@ -44,7 +50,7 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	// Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
+	// Minecraft 1.17 (21w19a) upwards uses Java 16.
 	it.options.release = 17
 }
 
@@ -59,6 +65,10 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
+}
+
+test {
+	useJUnitPlatform()
 }
 
 // configure the maven publication
