@@ -1,6 +1,8 @@
 package net.davidarthurcole.mcextras;
 
 import com.mojang.brigadier.tree.LiteralCommandNode;
+import com.natamus.collective_fabric.fabric.callbacks.CollectiveChatEvents;
+import net.davidarthurcole.mcextras.events.MCExtrasDupeChatEvent;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
@@ -23,12 +25,18 @@ public class MCExtras implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		MinecraftClient client = MinecraftClient.getInstance();
+		//registerEvents();
+		screenshotCmds();
+	}
 
+	static void screenshotCmds(){
+
+		MinecraftClient client = MinecraftClient.getInstance();
 		LiteralCommandNode<FabricClientCommandSource> openScreenshotsNode = ClientCommandManager.DISPATCHER.register(ClientCommandManager.literal("openscreenshots")
 				.executes(context -> loadScreenshots(client)));
-		ClientCommandManager.DISPATCHER.register(ClientCommandManager.literal("oss").redirect(openScreenshotsNode));
 
+		ClientCommandManager.DISPATCHER.register(ClientCommandManager.literal("oss")
+				.executes(context -> loadScreenshots(client)));
 	}
 
 	//Given a client, open the screenshots folder
