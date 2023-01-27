@@ -10,7 +10,7 @@ import net.minecraft.util.Util;
 
 public class MCExtras implements ModInitializer {
 
-	private static final String rscPath = MinecraftClient.getInstance().getResourcePackDir().toURI().toString();
+	private static final String rscPath = MinecraftClient.getInstance().getResourcePackDir().toUri().toString();
 
 	@Override
 	public void onInitialize() {
