@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.0-SNAPSHOT'
+	id 'fabric-loom' version '1.3-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -19,6 +19,7 @@ repositories {
 	mavenCentral()
 	maven {
 		url = uri("https://storage.googleapis.com/devan-maven/")
+		url = uri("https://ueaj.dev/maven")
 	}
 }
 
@@ -38,7 +39,7 @@ dependencies {
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 
 	//Resource building during runtime
-	modImplementation("net.devtech:arrp:0.5.4")
+	modImplementation("net.devtech:arrp:0.+")
 }
 
 processResources {
